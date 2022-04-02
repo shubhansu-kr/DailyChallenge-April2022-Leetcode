@@ -6,9 +6,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution1
+{
+public:
+    bool palindrome(string s)
+    {
+        int i, j;
+        for (i = 0, j = s.size(); i < j; ++i, --j)
+        {
+            if (s[i] != s[j])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool validPalindrome(string s)
+    {
+        int i, j;
+        for (i = 0, j = s.size() - 1; i < j; ++i, --j)
+        {
+            if (s[i] != s[j])
+            {
+                // Check if j can be deleted or i can be deleted to make the string
+                // palindrome
+
+                // delete i - Pass i+1 as index and j-i as len
+                string subi = s.substr(i + 1, j - i);
+
+                // delete j - pass i as index and j-1 as len
+                string subj = s.substr(i, j - i);
+
+                if (palindrome(subi) || palindrome(subj))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
+
 class Solution
 {
-    // Two pointer approach : 
+    // Two pointer approach :
 public:
     bool validPalindrome(string s)
     {
