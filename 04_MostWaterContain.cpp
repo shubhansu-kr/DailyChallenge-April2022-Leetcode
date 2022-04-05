@@ -19,12 +19,40 @@ class Solution
 public:
     int maxArea(vector<int> &height)
     {
+        int left = 0;
+        int right = height.size() - 1;
+        int maxi = 0;
+        while (left < right)
+        {
+            int w = right - left;
+            int h = min(height[left], height[right]);
+            int area = h * w;
+            maxi = max(maxi, area);
+            if (height[left] < height[right])
+                left++;
+            else if (height[left] > height[right])
+                right--;
+            else
+            {
+                left++;
+                right--;
+            }
+        }
+        return maxi;
+    }
+};
+
+class Solution
+{
+public:
+    int maxArea(vector<int> &height)
+    {
 
         // Area of container = min(height[i], height[j]) * (j-1) ;
         // We need to choose the container
 
         // Brute Force solution - Iterate all over the graph
-        // Issue - Time Limit exceeded :( 
+        // Issue - Time Limit exceeded :(
 
         int area = min(height[1], height[0]);
 
