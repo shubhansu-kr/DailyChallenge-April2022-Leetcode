@@ -14,11 +14,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class KthLargest
+class KthLargest2
 {
 public:
+    // Discussion solution : 
+    priority_queue<int, vector<int>, greater<int>> pq;
+    int size;
+    KthLargest2(int k, vector<int> nums)
+    {
+        size = k;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            pq.push(nums[i]);
+            if (pq.size() > k)
+                pq.pop();
+        }
+    }
+
+    int add(int val)
+    {
+        pq.push(val);
+        if (pq.size() > size)
+            pq.pop();
+        return pq.top();
+    }
+};
+
+class KthLargest1
+{
+public:
+    // Runtime error : Since k is more than the nums.size() ;
+    // ["KthLargest","add","add","add","add","add"]
+    // [[2,[0]],[-1],[1],[-2],[-4],[3]]
+
     vector<int> v;
-    KthLargest(int k, vector<int> &nums)
+    KthLargest1(int k, vector<int> &nums)
     {
         if (nums.size())
         {
