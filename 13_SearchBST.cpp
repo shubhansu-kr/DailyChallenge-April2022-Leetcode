@@ -22,11 +22,28 @@ struct TreeNode
 
 class Solution
 {
-    // Wrong solution 
+
 public:
     TreeNode *searchBST(TreeNode *root, int val)
     {
-        TreeNode * node = new TreeNode ;
+        if (!root)
+            return nullptr;
+        if (root->val == val)
+            return root;
+        else if (root->val > val)
+            return searchBST(root->left, val);
+        else
+            return searchBST(root->right, val);
+    }
+};
+
+class Solution
+{
+    // Wrong solution
+public:
+    TreeNode *searchBST(TreeNode *root, int val)
+    {
+        TreeNode *node = new TreeNode;
         if (root == nullptr)
         {
             return root;
@@ -35,11 +52,11 @@ public:
         {
             node = root;
         }
-        else if (root->val < val)
+        else if (root->val > val)
         {
             node = searchBST(root->left, val);
         }
-        else if (root->val > val)
+        else if (root->val < val)
         {
             node = searchBST(root->right, val);
         }
@@ -49,7 +66,7 @@ public:
 
 class Solution
 {
-    // Wrong solution 
+    // Wrong solution
 public:
     TreeNode *searchBST(TreeNode *root, int val)
     {
@@ -61,11 +78,11 @@ public:
         {
             return root;
         }
-        else if (root->val < val)
+        else if (root->val > val)
         {
             return searchBST(root->left, val);
         }
-        else if (root->val > val)
+        else if (root->val < val)
         {
             return searchBST(root->right, val);
         }
