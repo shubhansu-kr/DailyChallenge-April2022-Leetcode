@@ -25,6 +25,31 @@ public:
         for (int i = 1; i < points.size(); i++)
         {
             int minCost = abs(points[i][0] - points[i - 1][0]) + abs(points[i][1] - points[i - 1][1]);
+            for (int j = 0; j < points.size(); j++)
+            {
+                if (i == j) {
+                    continue;
+                }
+                minCost = min(minCost, abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]));
+            }
+            cost += minCost;
+        }
+        return cost;
+    }
+};
+
+class Solution
+{
+    // Wrong solution
+    // [[0,0],[1,-5],[2, -2], [2,0], [3, -2]]
+public:
+    int minCostConnectPoints(vector<vector<int>> &points)
+    {
+        sort(points.begin(), points.end());
+        int cost = 0;
+        for (int i = 1; i < points.size(); i++)
+        {
+            int minCost = abs(points[i][0] - points[i - 1][0]) + abs(points[i][1] - points[i - 1][1]);
             for (int j = 0; j < i; j++)
             {
                 minCost = min(minCost, abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]));
