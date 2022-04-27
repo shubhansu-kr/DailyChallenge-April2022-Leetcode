@@ -15,9 +15,51 @@ using namespace std;
 
 class Solution
 {
-    // Wrong answer 
+public:
+    string smallestStringWithSwaps(string s, vector<vector<int>> &pairs)
+    {
+        int flag = 1;
+        vector<vector<int>> p;
+        for (int i = 0; i < pairs.size(); i++)
+        {
+            for (int j = i + 1; j < pairs.size(); j++)
+            {
+                if (i == j)
+                {
+                    continue;
+                }
+                if (pairs[i][0] == pairs[j][0])
+                {
+                    p.push_back({pairs[i][1], pairs[j][1]});
+                }
+            }
+        }
+        for (auto a : p)
+        {
+            pairs.push_back(a);
+        }
+
+        while (flag)
+        {
+            flag = 0;
+            for (int i = 0; i < pairs.size(); i++)
+            {
+                if (s[pairs[i][0]] > s[pairs[i][1]])
+                {
+                    swap(s[pairs[i][0]], s[pairs[i][1]]);
+                    flag = 1;
+                }
+            }
+        }
+        return s;
+    }
+};
+
+class Solution
+{
+    // Wrong answer
     // We can swap more than once, so its like keep swapping unless you get the min.
-    // order string. 
+    // order string.
 public:
     bool check(string a, string b)
     {
