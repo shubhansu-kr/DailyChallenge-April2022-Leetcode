@@ -16,3 +16,5 @@
 This repo has solution to the April Leetcode daily Challenge.
 
 My leetcode profile : [shubhansu-kr](https://leetcode.com/shubhansu-kr/)
+
+Duration : April 1 to April 30 2022;
